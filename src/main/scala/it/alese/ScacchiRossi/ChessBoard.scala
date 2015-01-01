@@ -1,14 +1,19 @@
 package it.alese.ScacchiRossi
 
-
 class ChessBoard {
-    private val board = Array.ofDim[Square](8,8)
+    val board = new scala.collection.mutable.HashMap[Position, Square]()
 
-    def getSquareAt(x: Int, y: Int): Square = {
-        ???
+    (1 to 8).map{
+        num => ('A' to 'H').map{
+            let => board.put(new Position(let, num), new Square())
+        }
     }
 
-    def setSquareAt(x: Int, y: Int, square: Square): Unit = {
-        ???
+    def getSquareAt(coordinates: Position): Square = {
+        board(coordinates)
+    }
+
+    def setSquareAt(coordinates: Position, square: Square): Unit = {
+        board.put(coordinates, square)
     }
 }
