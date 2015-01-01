@@ -1,7 +1,21 @@
 package it.alese.ScacchiRossi
 
-case class Coordinates(x: Int, y: Int) {
+abstract class Coordinates(x: Char, y: Int) {
 
-  private final val charToIntMap: Map[Char, Int] = ('A' to 'H') zip (0 to 8) toMap
+  require((1 to 8).contains(y))
+  require(('a' to 'h').contains(x.toLower))
 
+  def getX: Int
+  def getY: Int
+
+}
+
+class ChessCoordinates(x: Char, y: Int) extends Coordinates(x: Char, y: Int) {
+  override def getX: Int = {
+    return x.toLower.toInt - 97
+  }
+
+  override def getY: Int = {
+    return y - 1
+  }
 }
