@@ -16,6 +16,12 @@ class PositionTest extends FlatSpec with Matchers {
     }
   }
 
+  it should "not accept illegal arguments for Y" in {
+    a [java.lang.IllegalArgumentException] should be thrownBy {
+      new Position('A', 9)
+    }
+  }
+
   it should "correctly test for equality" in {
     val onePosition = new Position('A', 1)
     val twoPosition = new Position('A', 1)
@@ -23,6 +29,19 @@ class PositionTest extends FlatSpec with Matchers {
 
     onePosition shouldEqual twoPosition
     onePosition should not equal threePosition
+  }
+
+  it should "not be equal to something which is not a position" in {
+    val position = new Position('A', 1)
+    val string = new String()
+    position should not equal string
+  }
+
+  it should "test equal if initialized with lowercase letter" in {
+    val lowerPosition = new Position('a', 1)
+    val upperPosition = new Position('A', 1)
+
+    lowerPosition shouldEqual upperPosition
   }
 
 }

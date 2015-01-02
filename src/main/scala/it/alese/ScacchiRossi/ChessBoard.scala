@@ -1,5 +1,7 @@
 package it.alese.ScacchiRossi
 
+import it.alese.ScacchiRossi.Pieces.Piece
+
 class ChessBoard {
     val board = new scala.collection.mutable.HashMap[Position, Square]()
 
@@ -13,7 +15,9 @@ class ChessBoard {
         board(coordinates)
     }
 
-    def setSquareAt(coordinates: Position, square: Square): Unit = {
-        board.put(coordinates, square)
+    def setPieceAt(coordinates: Position, piece: Piece): Square = {
+        val square = getSquareAt(coordinates)
+        square.add(piece)
+        square
     }
 }

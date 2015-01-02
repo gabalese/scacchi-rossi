@@ -3,10 +3,19 @@ package it.alese.ScacchiRossi
 import it.alese.ScacchiRossi.Pieces.Piece
 
 class Square {
-  private var pieces: Array[Option[Piece]] = Array.fill(2)(None:Option[Piece])
+  private var piece: Option[Piece] = None
 
-  def add(piece: Piece) = {
-    ???
+  def add(pieceToAdd: Piece): Piece = {
+    piece = Some(pieceToAdd)
+    piece.get
+  }
+
+  def isEmpty: Boolean = {
+    piece.isEmpty
+  }
+
+  def getPiece: Option[Piece] = {
+    piece
   }
 
 }
