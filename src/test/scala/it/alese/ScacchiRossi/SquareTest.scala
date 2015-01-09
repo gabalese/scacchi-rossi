@@ -23,6 +23,7 @@ class SquareTest extends FlatSpec with Matchers {
     val piece = square.add(new Pawn)
     val secondPiece = square.add(new Rookie)
     secondPiece should not be a [Pawn]
+    secondPiece should not be piece
     secondPiece shouldBe a [Rookie]
   }
 }

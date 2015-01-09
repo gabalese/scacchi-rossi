@@ -14,7 +14,7 @@ class Position(x: Char, y: Int) {
   }
 
   override def hashCode: Int = {
-    31 * y + x.toLower.toInt
+    java.util.Arrays.hashCode(Array(x.toLower, y))
   }
 
   override def equals(other: Any): Boolean = {
