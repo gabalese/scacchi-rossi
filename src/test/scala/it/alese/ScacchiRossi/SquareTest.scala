@@ -1,6 +1,6 @@
-package it.alese.ScacchiRossi
+package it.alese.scacchirossi
 
-import it.alese.ScacchiRossi.Pieces.{Rookie, Pawn}
+import it.alese.scacchirossi.Pieces.{Rookie, Pawn}
 import org.scalatest.{FlatSpec, Matchers}
 
 class SquareTest extends FlatSpec with Matchers {

@@ -1,4 +1,4 @@
-package it.alese.ScacchiRossi
+package it.alese.scacchirossi
 
 import org.scalatest.{Matchers, FlatSpec}
 

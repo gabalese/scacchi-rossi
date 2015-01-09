@@ -1,4 +1,4 @@
-package it.alese.ScacchiRossi.Pieces
+package it.alese.scacchirossi.Pieces
 
 trait PawnMovement {
 

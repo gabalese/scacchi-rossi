@@ -1,13 +1,13 @@
-package it.alese.ScacchiRossi
+package it.alese.scacchirossi
 
-import it.alese.ScacchiRossi.Pieces.Piece
+import it.alese.scacchirossi.Pieces.Piece
 
 class ChessBoard {
     val board = new scala.collection.mutable.HashMap[Position, Square]()
 
     (1 to 8).map{
-        num => ('A' to 'H').map{
-            let => board.put(new Position(let, num), new Square())
+        row => ('A' to 'H').map{
+            column => board.put(new Position(column, row), new Square())
         }
     }
 

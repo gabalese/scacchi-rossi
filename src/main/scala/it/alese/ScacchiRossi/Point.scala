@@ -1,4 +1,4 @@
-package it.alese.ScacchiRossi
+package it.alese.scacchirossi
 
 class Point {
 

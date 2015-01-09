@@ -1,6 +1,6 @@
-package it.alese.ScacchiRossi
+package it.alese.scacchirossi
 
-import it.alese.ScacchiRossi.Pieces.Piece
+import it.alese.scacchirossi.Pieces.Piece
 
 class Square {
   private var piece: Option[Piece] = None

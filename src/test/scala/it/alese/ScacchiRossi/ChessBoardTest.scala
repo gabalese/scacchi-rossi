@@ -1,6 +1,6 @@
-package it.alese.ScacchiRossi
+package it.alese.scacchirossi
 
-import it.alese.ScacchiRossi.Pieces.{Pawn, Piece}
+import it.alese.scacchirossi.Pieces.Pawn
 import org.scalatest.{FlatSpec, Matchers}
 
 class ChessBoardTest extends FlatSpec with Matchers {
