@@ -1,4 +1,4 @@
-package it.alese.scacchirossi.board
+package it.alese.scacchirossi.scacchirossi.board
 
 case class Row(index: Int) {
   require(1 to 8 contains index)

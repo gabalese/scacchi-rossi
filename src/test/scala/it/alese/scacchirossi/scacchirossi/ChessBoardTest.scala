@@ -1,6 +1,6 @@
-package it.alese.scacchirossi
+package it.alese.scacchirossi.scacchirossi
 
-import it.alese.scacchirossi.board.{Column, Row}
+import it.alese.scacchirossi.scacchirossi.board.{Column, Row}
 import org.scalatest.{Matchers, WordSpec}
 
 class ChessBoardTest extends WordSpec with Matchers {

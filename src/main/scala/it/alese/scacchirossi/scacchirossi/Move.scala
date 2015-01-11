@@ -1,3 +1,3 @@
-package it.alese.scacchirossi
+package it.alese.scacchirossi.scacchirossi
 
 case class Move(from: Position, to: Position)

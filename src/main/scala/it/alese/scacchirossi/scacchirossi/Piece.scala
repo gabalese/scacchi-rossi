@@ -1,4 +1,4 @@
-package it.alese.scacchirossi
+package it.alese.scacchirossi.scacchirossi
 
 
 trait Piece {
@@ -6,6 +6,7 @@ trait Piece {
 }
 
 class Pawn(val colour: Colour) extends Piece
+class Rookie(val colour: Colour) extends Piece
 
 trait Colour
 

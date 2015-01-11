@@ -1,4 +1,4 @@
-package it.alese.scacchirossi.board
+package it.alese.scacchirossi.scacchirossi.board
 
 case class Column(index: Char) {
   require('A' to 'H' contains index)
