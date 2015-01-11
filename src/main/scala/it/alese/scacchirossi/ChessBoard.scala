@@ -1,23 +1,25 @@
 package it.alese.scacchirossi
 
-import it.alese.scacchirossi.Pieces.Piece
+import it.alese.scacchirossi.board.{Column, Row}
+import scala.collection.mutable
+import scala.util.Try
 
 class ChessBoard {
-    private[scacchirossi] val board = new scala.collection.mutable.HashMap[Position, Square]()
 
-    (1 to 8).map{
-        row => ('A' to 'H').map{
-            column => board.put(new Position(column, row), new Square())
-        }
-    }
+  val board: mutable.Map[Position, Option[Piece]] =
+    mutable.Map(Column.validColumns.flatMap(col => Row.validRows map ( row => Position(col, row) -> None )) :_*)
 
-    def getSquareAt(coordinates: Position): Square = {
-        board(coordinates)
-    }
+  // Init pieces on board
+  Column.validColumns.foreach {
+    col => board.put(Position(col, Row(2)), Some(new Pawn(WHITE)))
+  }
 
-    def setPieceAt(coordinates: Position, piece: Piece): Square = {
-        val square = getSquareAt(coordinates)
-        square.add(piece)
-        square
-    }
+  Column.validColumns.foreach {
+    col => board.put(Position(col, Row(7)), Some(new Pawn(BLACK)))
+  }
+
+  def move(move: Move) = Try[Piece] {
+    ???
+  }
+
 }
