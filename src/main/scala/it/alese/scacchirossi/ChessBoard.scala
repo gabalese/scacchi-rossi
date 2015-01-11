@@ -3,7 +3,7 @@ package it.alese.scacchirossi
 import it.alese.scacchirossi.Pieces.Piece
 
 class ChessBoard {
-    val board = new scala.collection.mutable.HashMap[Position, Square]()
+    private[scacchirossi] val board = new scala.collection.mutable.HashMap[Position, Square]()
 
     (1 to 8).map{
         row => ('A' to 'H').map{
