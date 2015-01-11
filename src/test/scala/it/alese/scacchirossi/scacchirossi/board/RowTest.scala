@@ -10,11 +10,16 @@ class RowTest extends WordSpec with Matchers {
         Row(9)
       }
     }
+
     "be valid if an index is in range 1-8" in {
       noException shouldBe thrownBy {
         Row(1)
         Row(8)
       }
+    }
+
+    "correctly cast to Integer" in {
+      Row(1).toInt shouldEqual 1
     }
   }
 }

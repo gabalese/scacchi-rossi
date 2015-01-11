@@ -2,11 +2,14 @@ package it.alese.scacchirossi.scacchirossi
 
 import it.alese.scacchirossi.scacchirossi.board.{Row, Column}
 
-case class Position(column: Column, row: Row)
+case class Position(column: Column, row: Row) {
+  def x: Int = column.toInt - 1
+  def y: Int = row.toInt - 1
+}
 
 object Position {
   def apply(position: String): Position = {
-    require(position.length == 2)
-    new Position(Column(position(0)), Row(position(1).toInt - 48))
+    require(position.length == 2, "Illegal coordinate string")
+    new Position(Column(position(0)), Row(position(1).asDigit))
   }
 }
