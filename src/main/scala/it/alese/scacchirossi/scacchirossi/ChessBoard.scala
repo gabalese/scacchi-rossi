@@ -7,6 +7,7 @@ class ChessBoard {
   type Board = mutable.Map[Position, Option[Piece]]
 
   val board: Board = mutable.Map(Column.validColumns.flatMap(col => Row.validRows map ( row => Position(col, row) -> None )) :_*)
+  val moves = mutable.ListBuffer[Move]()
 
   // *** Place Pawns
   Column.validColumns.foreach {
@@ -49,6 +50,7 @@ class ChessBoard {
         board.put(move.to, Some(piece))
       case None => throw new Exception(s"Empty position ${move.from}")
     }
+    moves += move
   }
 
 }

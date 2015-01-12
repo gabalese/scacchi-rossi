@@ -10,7 +10,8 @@ class ChessBoardTest extends WordSpec with Matchers {
     "support 64 different positions" in {
       1 to 8 foreach { row => 'A' to 'H' foreach { col =>
         chessboard.board.contains(Position(Column(col), Row(row))) shouldBe true
-      }}
+        }
+      }
     }
 
     "begin with correct starting positions" in {
@@ -39,8 +40,12 @@ class ChessBoardTest extends WordSpec with Matchers {
       chessboard.board(positionB) shouldBe pawn
     }
 
+    "add moves to the moves list" in {
+      chessboard.moves.length shouldEqual 1
+    }
+
     "not move a piece outside the board" in {
-      a [IllegalArgumentException] should be thrownBy {
+      a[IllegalArgumentException] should be thrownBy {
         chessboard.move(Move(Position("E1"), Position("Q9")))
       }
     }
