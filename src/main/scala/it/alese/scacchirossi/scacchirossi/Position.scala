@@ -5,6 +5,11 @@ import it.alese.scacchirossi.scacchirossi.board.{Row, Column}
 case class Position(column: Column, row: Row) {
   def x: Int = column.toInt - 1
   def y: Int = row.toInt - 1
+
+  override def toString = {
+    s"$x$y"
+  }
+
 }
 
 object Position {
