@@ -7,6 +7,9 @@ case class Column(index: Char) {
   def toInt = {
     LetterToIntMap(index)
   }
+  def toChar: Char = {
+    index
+  }
 }
 
 object Column {

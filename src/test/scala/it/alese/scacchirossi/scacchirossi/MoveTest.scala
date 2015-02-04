@@ -10,12 +10,12 @@ class MoveTest extends WordSpec with Matchers {
 
     "express a tuple of distance" in {
       val move = Move(start, stop)
-      move.distance shouldEqual(1, 1)
+      move.distance shouldEqual (1, 1)
     }
 
     "be capable of expressing a negative distance" in {
       val move = Move(stop, start)
-      move.distance shouldEqual(-1, -1)
+      move.distance shouldEqual (-1, -1)
     }
 
     "not have an illegal from" in {

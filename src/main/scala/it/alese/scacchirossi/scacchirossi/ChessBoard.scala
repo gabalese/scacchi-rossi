@@ -9,39 +9,42 @@ class ChessBoard {
   val board: Board = mutable.Map(Column.validColumns.flatMap(col => Row.validRows map ( row => Position(col, row) -> None )) :_*)
   val moves = mutable.ListBuffer[Move]()
 
-  // *** Place Pawns
-  Column.validColumns.foreach {
-    col => board.put(Position(col, Row(2)), Some(new Pawn(WHITE)))
+  def start(): ChessBoard = {
+    // *** Place Pawns
+      Column.validColumns.foreach {
+        col => board.put(Position(col, Row(2)), Some(Pawn(WHITE)))
+      }
+      Column.validColumns.foreach {
+        col => board.put(Position(col, Row(7)), Some(Pawn(BLACK)))
+      }
+
+      // *** Place Rooks
+      board.put(Position("A1"), Some(Rook(WHITE)))
+      board.put(Position("H1"), Some(Rook(WHITE)))
+      board.put(Position("A8"), Some(Rook(BLACK)))
+      board.put(Position("H8"), Some(Rook(BLACK)))
+
+      // *** Place Knights
+      board.put(Position("B1"), Some(Knight(WHITE)))
+      board.put(Position("G1"), Some(Knight(WHITE)))
+      board.put(Position("B8"), Some(Knight(BLACK)))
+      board.put(Position("G8"), Some(Knight(BLACK)))
+
+      // *** Place Bishops
+      board.put(Position("C1"), Some(Bishop(WHITE)))
+      board.put(Position("F1"), Some(Bishop(WHITE)))
+      board.put(Position("C8"), Some(Bishop(BLACK)))
+      board.put(Position("F8"), Some(Bishop(BLACK)))
+
+      // *** Place Queens
+      board.put(Position("D1"), Some(Queen(WHITE)))
+      board.put(Position("D8"), Some(Queen(BLACK)))
+
+      // *** Place Kings
+      board.put(Position("E1"), Some(King(WHITE)))
+      board.put(Position("E8"), Some(King(BLACK)))
+      this
   }
-  Column.validColumns.foreach {
-    col => board.put(Position(col, Row(7)), Some(new Pawn(BLACK)))
-  }
-
-  // *** Place Rooks
-  board.put(Position("A1"), Some(Rook(WHITE)))
-  board.put(Position("H1"), Some(Rook(WHITE)))
-  board.put(Position("A8"), Some(Rook(BLACK)))
-  board.put(Position("H8"), Some(Rook(BLACK)))
-
-  // *** Place Knights
-  board.put(Position("B1"), Some(Knight(WHITE)))
-  board.put(Position("G1"), Some(Knight(WHITE)))
-  board.put(Position("B8"), Some(Knight(BLACK)))
-  board.put(Position("G8"), Some(Knight(BLACK)))
-
-  // *** Place Bishops
-  board.put(Position("C1"), Some(Bishop(WHITE)))
-  board.put(Position("F1"), Some(Bishop(WHITE)))
-  board.put(Position("C8"), Some(Bishop(BLACK)))
-  board.put(Position("F8"), Some(Bishop(BLACK)))
-
-  // *** Place Queens
-  board.put(Position("D1"), Some(Queen(WHITE)))
-  board.put(Position("D8"), Some(Queen(BLACK)))
-
-  // *** Place Kings
-  board.put(Position("E1"), Some(King(WHITE)))
-  board.put(Position("E8"), Some(King(BLACK)))
 
   def move(move: Move) = {
     board(move.from) match {
@@ -52,6 +55,8 @@ class ChessBoard {
     }
     moves += move
   }
+
+  def isFirstMove = moves.isEmpty
 
 }
 
