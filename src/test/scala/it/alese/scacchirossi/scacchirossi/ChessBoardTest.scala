@@ -50,11 +50,11 @@ class ChessBoardTest extends WordSpec with Matchers {
       }
     }
 
-    "not move a piece beyond another one unless it's a horse" in {
+    "not move a piece beyond another one unless it's a knight" in {
       pending
     }
 
-    "move a piece beyond another one if it's a horse" in {
+    "move a piece beyond another one if it's a knight" in {
       pending
     }
   }

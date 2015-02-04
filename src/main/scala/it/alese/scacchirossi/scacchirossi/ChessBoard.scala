@@ -17,17 +17,17 @@ class ChessBoard {
     col => board.put(Position(col, Row(7)), Some(new Pawn(BLACK)))
   }
 
-  // *** Place Rookies
-  board.put(Position("A1"), Some(new Rookie(WHITE)))
-  board.put(Position("H1"), Some(new Rookie(WHITE)))
-  board.put(Position("A8"), Some(new Rookie(BLACK)))
-  board.put(Position("H8"), Some(new Rookie(BLACK)))
+  // *** Place Rooks
+  board.put(Position("A1"), Some(new Rook(WHITE)))
+  board.put(Position("H1"), Some(new Rook(WHITE)))
+  board.put(Position("A8"), Some(new Rook(BLACK)))
+  board.put(Position("H8"), Some(new Rook(BLACK)))
 
-  // *** Place Horses
-  board.put(Position("B1"), Some(new Horse(WHITE)))
-  board.put(Position("G1"), Some(new Horse(WHITE)))
-  board.put(Position("B8"), Some(new Horse(BLACK)))
-  board.put(Position("G8"), Some(new Horse(BLACK)))
+  // *** Place Knights
+  board.put(Position("B1"), Some(new Knight(WHITE)))
+  board.put(Position("G1"), Some(new Knight(WHITE)))
+  board.put(Position("B8"), Some(new Knight(BLACK)))
+  board.put(Position("G8"), Some(new Knight(BLACK)))
 
   // *** Place Bishops
   board.put(Position("C1"), Some(new Bishop(WHITE)))

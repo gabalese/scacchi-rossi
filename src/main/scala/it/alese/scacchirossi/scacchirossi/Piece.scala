@@ -6,8 +6,8 @@ trait Piece {
 }
 
 class Pawn(val colour: Colour) extends Piece
-class Rookie(val colour: Colour) extends Piece
-class Horse(val colour: Colour) extends Piece
+class Rook(val colour: Colour) extends Piece
+class Knight(val colour: Colour) extends Piece
 class Bishop(val colour: Colour) extends Piece
 class Queen(val colour: Colour) extends Piece
 class King(val colour: Colour) extends Piece
