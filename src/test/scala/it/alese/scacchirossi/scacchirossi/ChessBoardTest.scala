@@ -1,15 +1,25 @@
 package it.alese.scacchirossi.scacchirossi
 
+import it.alese.scacchirossi.scacchirossi
 import it.alese.scacchirossi.scacchirossi.board.{Column, Row}
 import org.scalatest.{Matchers, WordSpec}
 
 class ChessBoardTest extends WordSpec with Matchers {
   val chessboard = new ChessBoard()
 
+  "A chessboard object" should {
+    "contain only valid positions" in {
+      val chessboardObject = ChessBoard
+      chessboardObject.validPositions should contain (Position("A1"))
+      chessboardObject.validPositions should contain (Position("H8"))
+    }
+  }
+
   "A chessboard" should {
     "support 64 different positions" in {
-      1 to 8 foreach { row => 'A' to 'H' foreach { col =>
-        chessboard.board.contains(Position(Column(col), Row(row))) shouldBe true
+      1 to 8 foreach {
+        row => 'A' to 'H' foreach {
+          col => chessboard.board.contains(Position(Column(col), Row(row))) shouldBe true
         }
       }
     }

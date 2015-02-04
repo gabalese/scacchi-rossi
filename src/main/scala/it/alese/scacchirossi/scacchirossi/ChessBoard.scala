@@ -54,3 +54,7 @@ class ChessBoard {
   }
 
 }
+
+object ChessBoard {
+  val validPositions = Column.validColumns.flatMap(col => Row.validRows.map ( row => Position(col, row)))
+}
