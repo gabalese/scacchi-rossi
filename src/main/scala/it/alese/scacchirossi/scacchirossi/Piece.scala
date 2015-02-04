@@ -5,13 +5,13 @@ trait Piece {
   val colour: Colour
 }
 
-class Pawn(val colour: Colour) extends Piece
-class Rook(val colour: Colour) extends Piece
-class Knight(val colour: Colour) extends Piece
-class Bishop(val colour: Colour) extends Piece
-class Queen(val colour: Colour) extends Piece
-class King(val colour: Colour) extends Piece
+case class Pawn(colour: Colour) extends Piece
+case class Rook(colour: Colour) extends Piece
+case class Knight(colour: Colour) extends Piece
+case class Bishop(colour: Colour) extends Piece
+case class Queen(colour: Colour) extends Piece
+case class King(colour: Colour) extends Piece
 
-trait Colour
+sealed trait Colour
 case object WHITE extends Colour
 case object BLACK extends Colour

@@ -18,30 +18,30 @@ class ChessBoard {
   }
 
   // *** Place Rooks
-  board.put(Position("A1"), Some(new Rook(WHITE)))
-  board.put(Position("H1"), Some(new Rook(WHITE)))
-  board.put(Position("A8"), Some(new Rook(BLACK)))
-  board.put(Position("H8"), Some(new Rook(BLACK)))
+  board.put(Position("A1"), Some(Rook(WHITE)))
+  board.put(Position("H1"), Some(Rook(WHITE)))
+  board.put(Position("A8"), Some(Rook(BLACK)))
+  board.put(Position("H8"), Some(Rook(BLACK)))
 
   // *** Place Knights
-  board.put(Position("B1"), Some(new Knight(WHITE)))
-  board.put(Position("G1"), Some(new Knight(WHITE)))
-  board.put(Position("B8"), Some(new Knight(BLACK)))
-  board.put(Position("G8"), Some(new Knight(BLACK)))
+  board.put(Position("B1"), Some(Knight(WHITE)))
+  board.put(Position("G1"), Some(Knight(WHITE)))
+  board.put(Position("B8"), Some(Knight(BLACK)))
+  board.put(Position("G8"), Some(Knight(BLACK)))
 
   // *** Place Bishops
-  board.put(Position("C1"), Some(new Bishop(WHITE)))
-  board.put(Position("F1"), Some(new Bishop(WHITE)))
-  board.put(Position("C8"), Some(new Bishop(BLACK)))
-  board.put(Position("F8"), Some(new Bishop(BLACK)))
+  board.put(Position("C1"), Some(Bishop(WHITE)))
+  board.put(Position("F1"), Some(Bishop(WHITE)))
+  board.put(Position("C8"), Some(Bishop(BLACK)))
+  board.put(Position("F8"), Some(Bishop(BLACK)))
 
   // *** Place Queens
-  board.put(Position("D1"), Some(new Queen(WHITE)))
-  board.put(Position("D8"), Some(new Queen(BLACK)))
+  board.put(Position("D1"), Some(Queen(WHITE)))
+  board.put(Position("D8"), Some(Queen(BLACK)))
 
   // *** Place Kings
-  board.put(Position("E1"), Some(new King(WHITE)))
-  board.put(Position("E8"), Some(new King(BLACK)))
+  board.put(Position("E1"), Some(King(WHITE)))
+  board.put(Position("E8"), Some(King(BLACK)))
 
   def move(move: Move) = {
     board(move.from) match {
