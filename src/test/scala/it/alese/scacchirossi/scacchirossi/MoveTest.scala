@@ -29,6 +29,12 @@ class MoveTest extends WordSpec with Matchers {
       }
     }
 
+    "disallow a non-move from and to the same position" in {
+      a[IllegalArgumentException] shouldBe thrownBy {
+        Move(Position("A1"), Position("A1"))
+      }
+    }
+
     "return a zero vertical distance for a horizontal move" in {
       Move(Position("A1"), Position("H1")).distance should equal (7, 0)
       Move(Position("H1"), Position("A1")).distance should equal (-7, 0)
