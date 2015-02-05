@@ -20,13 +20,31 @@ class MoveTest extends WordSpec with Matchers {
 
     "not have an illegal from" in {
       a[IllegalArgumentException] shouldBe thrownBy {
-        Move(new Position(Column('H'), Row(9)), new Position(Column('A'), Row(1)))
+        Move(Position(Column('H'), Row(9)), Position(Column('A'), Row(1)))
       }
     }
     "not have an illegal to" in {
       a[IllegalArgumentException] shouldBe thrownBy {
-        Move(new Position(Column('A'), Row(1)), new Position(Column('H'), Row(9)))
+        Move(Position(Column('A'), Row(1)), Position(Column('H'), Row(9)))
       }
+    }
+
+    "return a zero vertical distance for a horizontal move" in {
+      Move(Position("A1"), Position("H1")).distance should equal (7, 0)
+      Move(Position("H1"), Position("A1")).distance should equal (-7, 0)
+    }
+
+    "return a zero horizontal distance for a vertical move" in {
+      Move(Position("A1"), Position("A8")).distance should equal (0, 7)
+      Move(Position("A8"), Position("A1")).distance should equal (0, -7)
+    }
+
+    "return (7,7) for a right diagonal" in {
+      Move(Position("A1"), Position("H8")).distance should equal (7, 7)
+    }
+
+    "return (-7,7) for a left diagonal" in {
+      Move(Position("H1"), Position("A8")).distance should equal (-7, 7)
     }
   }
 }

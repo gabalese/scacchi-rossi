@@ -4,7 +4,6 @@ import it.alese.scacchirossi.scacchirossi.board.{Column, Row}
 import org.scalatest.{Matchers, WordSpec}
 
 class ChessBoardTest extends WordSpec with Matchers {
-  val chessboard = new ChessBoard().start()
 
   "A chessboard object" should {
     "contain only valid positions" in {
@@ -15,6 +14,7 @@ class ChessBoardTest extends WordSpec with Matchers {
   }
 
   "A chessboard" should {
+    val chessboard = new ChessBoard().start()
     "support 64 different positions" in {
       1 to 8 foreach {
         row => 'A' to 'H' foreach {
@@ -66,7 +66,9 @@ class ChessBoardTest extends WordSpec with Matchers {
         chessboard.move(Move(Position("E1"), Position("Q9")))
       }
     }
+  }
 
+  it should {
     "be empty by default" in {
       val emptyBoard = new ChessBoard()
       emptyBoard.board.foreach {
@@ -74,12 +76,22 @@ class ChessBoardTest extends WordSpec with Matchers {
       }
     }
 
-    "not move a piece beyond another one unless it's a knight" in {
-      pending
+    "put a piece on an empty position" in {
+      val chessboard = new ChessBoard()
+      chessboard.place(Rook(WHITE), Position("A1"))
+      chessboard.get(Position("A1")) shouldBe 'defined
+      chessboard.get(Position("A1")).get shouldBe a[Rook]
     }
 
-    "move a piece beyond another one if it's a knight" in {
-      pending
+    "move a piece from an empty position to an empty position" in {
+      val chessboard = new ChessBoard()
+      chessboard.place(Rook(WHITE), Position("A1"))
+      chessboard.move(Move(Position("A1"), Position("B1")))
+      val pieceAtNewPosition = chessboard.get(Position("B1"))
+
+      pieceAtNewPosition shouldBe 'defined
+      pieceAtNewPosition.get shouldBe a[Rook]
     }
   }
+
 }

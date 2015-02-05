@@ -27,6 +27,12 @@ class PositionTest extends WordSpec with Matchers {
       position.y shouldEqual 0
     }
 
+    "return 7,0 for H1 position" in {
+      val position = Position("H1")
+      position.x shouldEqual 7
+      position.y shouldEqual 0
+    }
+
     "raise an exception for illegal argument string" in {
       an [IllegalArgumentException] shouldBe thrownBy {
         Position("AA1")

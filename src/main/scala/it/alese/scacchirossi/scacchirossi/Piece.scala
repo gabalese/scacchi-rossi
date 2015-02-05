@@ -1,28 +1,48 @@
 package it.alese.scacchirossi.scacchirossi
 
+sealed trait Colour
+case object WHITE extends Colour
+case object BLACK extends Colour
 
 trait Piece {
   val colour: Colour
+  def canMove(move: Move): Boolean
 }
 
-case class Pawn(colour: Colour) extends Piece
-
-case class Rook(colour: Colour) extends Piece {
-  def canMove(move: Move): Boolean = {
+case class Pawn(colour: Colour) extends Piece {
+  override def canMove(move: Move): Boolean = {
     ???
   }
 }
 
-case class Knight(colour: Colour) extends Piece
+case class Rook(colour: Colour) extends Piece {
+  override def canMove(move: Move): Boolean = {
+    move.distance match {
+      case (0, _) => true
+      case (_, 0) => true
+      case _ => false
+    }
+  }
+}
 
-case class Bishop(colour: Colour) extends Piece
+case class Knight(colour: Colour) extends Piece {
+  override def canMove(move: Move): Boolean = ???
+}
 
-case class Queen(colour: Colour) extends Piece
+case class Bishop(colour: Colour) extends Piece {
+  override def canMove(move: Move): Boolean = {
+    move.distance match {
+      case (x, y) => math.abs(x) == math.abs(y)
+      case _ => false
+    }
+  }
+}
 
-case class King(colour: Colour) extends Piece
+case class Queen(colour: Colour) extends Piece {
+  override def canMove(move: Move): Boolean = ???
+}
 
-sealed trait Colour
+case class King(colour: Colour) extends Piece {
+  override def canMove(move: Move): Boolean = ???
+}
 
-case object WHITE extends Colour
-
-case object BLACK extends Colour
