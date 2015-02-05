@@ -12,7 +12,13 @@ object LetterToIntMap {
     'H' -> 8
   )
 
+  private val intMap = letterMap.map(_.swap)
+
   def apply(letter: Char): Int = {
     letterMap(letter)
+  }
+
+  def apply(int: Int): Char = {
+    intMap(int)
   }
 }

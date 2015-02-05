@@ -14,4 +14,7 @@ case class Column(index: Char) {
 
 object Column {
   val validColumns = 'A' to 'H' map (i => Column(i))
+  def apply(x: Int): Column = {
+    new Column(LetterToIntMap(x))
+  }
 }

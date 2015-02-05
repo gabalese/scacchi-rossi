@@ -22,5 +22,9 @@ class ColumnTest extends WordSpec with Matchers {
       val col = Column('A')
       col.toInt shouldEqual 1
     }
+
+    "be initialized with an integer" in {
+      Column(1) shouldEqual Column('A')
+    }
   }
 }

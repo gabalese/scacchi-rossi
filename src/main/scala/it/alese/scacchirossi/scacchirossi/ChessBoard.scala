@@ -63,14 +63,15 @@ class ChessBoard {
     }
   }
 
-  def move(move: Move) = {
+  def move(move: Move): Either[java.lang.Throwable, Position] = {
     board(move.from) match {
       case Some(piece) =>
         board(move.from) = None
         board.put(move.to, Some(piece))
-      case None => throw new Exception(s"Empty position ${move.from}")
+        moves += move
+          Right(move.to)
+      case None => Left(new Exception(s"Empty position ${move.from}"))
     }
-    moves += move
   }
 
   def isFirstMove = moves.isEmpty
