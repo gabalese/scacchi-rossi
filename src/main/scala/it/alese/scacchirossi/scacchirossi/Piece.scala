@@ -14,7 +14,16 @@ trait Piece {
 
 case class Pawn(colour: Colour) extends Piece {
   override def isLegalMove(move: Move): Boolean = {
-    ???
+    /*
+     * This is tricky: the pawn can only move one forward, EXCEPT on the first move  when
+     * it might move two forward, and when capturing another piece, where it moves NW or NE
+     * This depends on the state of the chessboard.
+     */
+    move.distance match {
+      case (x, y) if math.abs(x) == math.abs(y) && math.abs(x) == 1 => true
+      case (0, y) if 1 <= y && y <= 2 => true
+      case _ => false
+    }
   }
 }
 
