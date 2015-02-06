@@ -53,13 +53,10 @@ class ChessBoard {
 
   def place(piece: Piece, position: Position): Boolean = {
     this.get(position) match {
-      case Some(existingPiece) => {
-        false
-      }
-      case None => {
+      case Some(existingPiece) => false
+      case None =>
         board.put(position, Some(piece))
         true
-      }
     }
   }
 
