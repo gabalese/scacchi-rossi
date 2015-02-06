@@ -1,11 +1,14 @@
 package it.alese.scacchirossi.scacchirossi
 
 sealed trait Colour
+
 case object WHITE extends Colour
+
 case object BLACK extends Colour
 
 trait Piece {
   val colour: Colour
+
   def isLegalMove(move: Move): Boolean
 }
 
@@ -26,7 +29,12 @@ case class Rook(colour: Colour) extends Piece {
 }
 
 case class Knight(colour: Colour) extends Piece {
-  override def isLegalMove(move: Move): Boolean = ???
+  override def isLegalMove(move: Move): Boolean = {
+    move.distance match {
+      case (x, y) if math.abs(math.abs(x) - math.abs(y)) == 1 => true
+      case _ => false
+    }
+  }
 }
 
 case class Bishop(colour: Colour) extends Piece {
@@ -39,7 +47,10 @@ case class Bishop(colour: Colour) extends Piece {
 }
 
 case class Queen(colour: Colour) extends Piece {
-  override def isLegalMove(move: Move): Boolean = ???
+  override def isLegalMove(move: Move): Boolean = {
+    if (Rook(colour).isLegalMove(move) || Bishop(colour).isLegalMove(move)) true
+    else false
+  }
 }
 
 case class King(colour: Colour) extends Piece {
