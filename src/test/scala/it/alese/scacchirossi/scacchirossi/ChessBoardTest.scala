@@ -16,9 +16,11 @@ class ChessBoardTest extends WordSpec with Matchers {
   "A chessboard" should {
     val chessboard = new ChessBoard().start()
     "support 64 different positions" in {
-      1 to 8 foreach {
-        row => 'A' to 'H' foreach {
-          col => chessboard.board.contains(Position(Column(col), Row(row))) shouldBe true
+      noException shouldBe thrownBy {
+        1 to 8 foreach {
+          row => 'A' to 'H' foreach {
+            col => chessboard.get(Position(Column(col), Row(row)))
+          }
         }
       }
     }
@@ -30,14 +32,14 @@ class ChessBoardTest extends WordSpec with Matchers {
     "begin with correct starting positions" in {
       'A' to 'H' foreach {
         col =>
-          chessboard.board(Position(Column(col), Row(1))).get.colour shouldBe WHITE
-          chessboard.board(Position(Column(col), Row(2))).get.colour shouldBe WHITE
-          chessboard.board(Position(Column(col), Row(3))) shouldBe 'empty
-          chessboard.board(Position(Column(col), Row(4))) shouldBe 'empty
-          chessboard.board(Position(Column(col), Row(5))) shouldBe 'empty
-          chessboard.board(Position(Column(col), Row(6))) shouldBe 'empty
-          chessboard.board(Position(Column(col), Row(7))).get.colour shouldBe BLACK
-          chessboard.board(Position(Column(col), Row(8))).get.colour shouldBe BLACK
+          chessboard.get(Position(Column(col), Row(1))).get.colour shouldBe WHITE
+          chessboard.get(Position(Column(col), Row(2))).get.colour shouldBe WHITE
+          chessboard.get(Position(Column(col), Row(3))) shouldBe 'empty
+          chessboard.get(Position(Column(col), Row(4))) shouldBe 'empty
+          chessboard.get(Position(Column(col), Row(5))) shouldBe 'empty
+          chessboard.get(Position(Column(col), Row(6))) shouldBe 'empty
+          chessboard.get(Position(Column(col), Row(7))).get.colour shouldBe BLACK
+          chessboard.get(Position(Column(col), Row(8))).get.colour shouldBe BLACK
       }
     }
 
@@ -45,12 +47,12 @@ class ChessBoardTest extends WordSpec with Matchers {
       val positionA = Position("D2")
       val positionB = Position("D3")
 
-      val pawn = chessboard.board(positionA)
+      val pawn = chessboard.get(positionA)
 
       chessboard.move(Move(positionA, positionB))
 
-      chessboard.board(positionA) shouldBe 'empty
-      chessboard.board(positionB) shouldBe pawn
+      chessboard.get(positionA) shouldBe 'empty
+      chessboard.get(positionB) shouldBe pawn
     }
 
     "not be in initial state after a move" in {
@@ -58,7 +60,7 @@ class ChessBoardTest extends WordSpec with Matchers {
     }
 
     "add moves to the moves list" in {
-      chessboard.moves.length shouldEqual 1
+      chessboard.completedMoves.length shouldEqual 1
     }
 
     "not move a piece outside the board" in {
@@ -71,8 +73,11 @@ class ChessBoardTest extends WordSpec with Matchers {
   it should {
     "be empty by default" in {
       val emptyBoard = new ChessBoard()
-      emptyBoard.board.foreach {
-        case (position, piece) => piece should not be 'defined
+
+      noException shouldBe thrownBy {
+        ChessBoard.validPositions foreach {
+          position => emptyBoard.get(position)
+        }
       }
     }
 

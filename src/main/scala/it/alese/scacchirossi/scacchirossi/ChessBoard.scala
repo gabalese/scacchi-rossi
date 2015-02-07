@@ -7,8 +7,8 @@ import scala.collection.mutable
 class ChessBoard {
   type Board = mutable.Map[Position, Option[Piece]]
 
-  val board: Board = mutable.Map(Column.validColumns.flatMap(col => Row.validRows map (row => Position(col, row) -> None)): _*)
-  val moves = mutable.ListBuffer[Move]()
+  private val board: Board = mutable.Map(Column.validColumns.flatMap(col => Row.validRows map (row => Position(col, row) -> None)): _*)
+  private val moves = mutable.ListBuffer[Move]()
 
   def start(): ChessBoard = {
     // *** Place Pawns
@@ -51,6 +51,10 @@ class ChessBoard {
     board(position)
   }
 
+  def put(position: Position, piece: Piece) = {
+    board.put(position, Some(piece))
+  }
+
   def place(piece: Piece, position: Position): Boolean = {
     this.get(position) match {
       case Some(existingPiece) => false
@@ -72,6 +76,8 @@ class ChessBoard {
   }
 
   def isFirstMove = moves.isEmpty
+
+  def completedMoves = moves.toList
 
 }
 
