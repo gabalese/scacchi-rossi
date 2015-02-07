@@ -14,17 +14,18 @@ case class Move(from: Position, to: Position) {
   }
 
   def intermediatePositions: List[Position] = {
-    if (offset.horizontal == 0 || offset.vertical == 0) {
-      // straight line movement
+    if (isAStraightLine) {
       fetchStraightPositions
-    } else if (offset.horizontal == offset.vertical) {
-      // diagonal movement
+    } else if (isADiagonalLine) {
       fetchDiagonalPositions
     } else {
-      // L-shaped movement
       fetchLshapedPositions
     }
   }
+
+  private def isAStraightLine = offset.horizontal == 0 || offset.vertical == 0
+
+  private def isADiagonalLine = offset.horizontal == offset.vertical
 
   private def fetchStraightPositions: List[Position] = {
     lazy val positions = from.x to to.x flatMap { col => from.y to to.y map { row => Position(Column(col), Row(row))}}
@@ -37,7 +38,6 @@ case class Move(from: Position, to: Position) {
   }
 
   private def fetchLshapedPositions: List[Position] = {
-    // L-shaped movement
     // We assume that one moves the Knight vertically then horizontally
     // the intermediate positions between a L-shaped movement are irrelevant, i.e. the Knight can jump over other pieces
     lazy val horizontalPositions = ((0 to offset.vertical by offset.vertical.signum) map { addendum => from +(0, addendum)}).toList
