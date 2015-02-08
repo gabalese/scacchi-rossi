@@ -9,6 +9,8 @@ case object BLACK extends Colour
 trait Piece {
   val colour: Colour
 
+  val isWhite = colour == WHITE
+  val isBlack = colour == BLACK
   def isLegalMove(move: Move): Boolean
 }
 
