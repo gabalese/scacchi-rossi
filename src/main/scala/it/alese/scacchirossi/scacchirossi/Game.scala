@@ -1,11 +1,12 @@
 package it.alese.scacchirossi.scacchirossi
 
-case class Game(chessboard: ChessBoard, moves: List[Move]) {
+case class Game(chessboard: Map[Position, Piece], moves: List[Move]) {
   def move(move: Move): Game = {
-    val pieceToMove = chessboard.board(move.start)
-    val intermediateBoard = chessboard.board - move.start
-    val finalBoard = intermediateBoard + (move.end -> pieceToMove)
-    Game(ChessBoard(finalBoard), moves :+ move)
+    val pieceToMove = chessboard.get(move.start)
+    pieceToMove.fold(this){piece =>
+      val boardAfterMove = (chessboard - move.start) + (move.end -> piece)
+      Game(boardAfterMove, moves :+ move)
+    }
   }
 }
 
@@ -51,5 +52,5 @@ object Game {
     Position("G7") -> Pawn(BLACK),
     Position("H7") -> Pawn(BLACK)
   )
-  def start(): Game = new Game(ChessBoard(startBoard), List[Move]())
+  def start(): Game = new Game(startBoard, List[Move]())
 }
