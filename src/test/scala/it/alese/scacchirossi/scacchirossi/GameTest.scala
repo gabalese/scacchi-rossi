@@ -6,9 +6,11 @@ class GameTest extends WordSpec with Matchers {
   "A game" should {
     val game = Game.start()
     "be initialized with pieces in place" in {
+      pending
       game.chessboard(Position("H1")) shouldEqual Rook(WHITE)
     }
     "support a move" in {
+      pending
       val move = Move(Position("A2"), Position("A3"))
       val gameAfterMove = game.move(move)
       gameAfterMove shouldBe a[Game]

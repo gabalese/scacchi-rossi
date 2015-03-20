@@ -1,6 +1,6 @@
 package it.alese.scacchirossi.scacchirossi
 
-import it.alese.scacchirossi.scacchirossi.board.{OccupiedSquare, Square}
+import it.alese.scacchirossi.scacchirossi.board.{LockedSquare, FreeSquare, OccupiedSquare, Square}
 
 case class Turn(white: Option[Move], black: Option[Move]) {
   /*
@@ -14,13 +14,21 @@ case class Turn(white: Option[Move], black: Option[Move]) {
 case class GameState(game: Game, turn: Turn) {
   /*
   The game state changes the game when the turn is completed
+  should it be the main "thing" we manipulate?
    */
   def move(move: Move): GameState = {
-    ???
+    if (LegalMoveChecker(this, move).isLegal) {
+      val nexTurn = turn.addMove(move)
+      GameState(game, nexTurn)
+    } else {
+      this
+    }
   }
+}
 
-  def isLegalMove(move: Move): Boolean = {
-    ???
+case class LegalMoveChecker(state: GameState, move: Move) {
+  def isLegal: Boolean = {
+    true
   }
 }
 
@@ -34,7 +42,11 @@ case class Game(chessboard: Map[Position, Square], moves: List[Move]) {
        (a position with a locked square means that a move cannot end there)
        (thus having an illegal move according to GameState
     */
-
+    chessboard.getOrElse(move.end, FreeSquare) match {
+      case FreeSquare => // do stuff
+      case square: OccupiedSquare => // do stuff
+      case LockedSquare => // do other stuff
+    }
     val pieceToMove = chessboard.get(move.start)
     pieceToMove.fold(this){piece =>
       val boardAfterMove = (chessboard - move.start) + (move.end -> piece)
