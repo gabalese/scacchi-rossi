@@ -1,6 +1,6 @@
 package it.alese.scacchirossi.scacchirossi
 
-import it.alese.scacchirossi.scacchirossi.board.{Column, Row}
+import it.alese.scacchirossi.scacchirossi.board.{ChessBoard, Column, Row}
 
 case class Move(start: Position, end: Position) {
   require(ChessBoard.validPositions contains start)

@@ -1,6 +1,6 @@
-package it.alese.scacchirossi.scacchirossi
+package it.alese.scacchirossi.scacchirossi.board
 
-import it.alese.scacchirossi.scacchirossi.board.{Column, Row}
+import it.alese.scacchirossi.scacchirossi.Position
 
 object ChessBoard {
   val validPositions = for {
