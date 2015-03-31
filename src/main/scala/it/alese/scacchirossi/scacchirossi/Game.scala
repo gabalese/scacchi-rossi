@@ -48,7 +48,7 @@ case class Game(chessboard: Map[Position, Square], moves: List[Move]) {
       case LockedSquare => // do other stuff
     }
     val pieceToMove = chessboard.get(move.start)
-    pieceToMove.fold(this){piece =>
+    pieceToMove.fold(this) { piece =>
       val boardAfterMove = (chessboard - move.start) + (move.end -> piece)
       Game(boardAfterMove, moves :+ move)
     }
@@ -56,7 +56,8 @@ case class Game(chessboard: Map[Position, Square], moves: List[Move]) {
 }
 
 object Game {
-  private val startChessBoard: Map[Position, Square] = Map(
+  type Chessboard = Map[Position, Square]
+  private val startChessBoard: Chessboard = Map(
   // Rooks
     Position("A1") -> OccupiedSquare(Rook(WHITE)),
     Position("H1") -> OccupiedSquare(Rook(WHITE)),
